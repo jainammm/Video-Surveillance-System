@@ -1,0 +1,23 @@
+{
+  "name": "Video-Surveillance-System",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jainammm/Video-Surveillance-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jainammm/Video-Surveillance-System/issues"
+  },
+  "homepage": "https://github.com/jainammm/Video-Surveillance-System#readme",
+  "devDependencies": {
+    "electron": "^11.0.1"
+  }
+}
