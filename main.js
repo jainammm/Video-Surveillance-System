@@ -2,13 +2,32 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
+const createPyProc = () => {
+    let port = '8000'
+    pyProc = require('child_process').spawn('uvicorn', ['backend.api:app', '--port=' + port])
+    if (pyProc != null) {
+        console.log('fastapi started')
+    }
+}
+
+const exitPyProc = () => {
+    pyProc.kill()
+    pyProc = null
+    pyPort = null
+}
+
+app.on('ready', createPyProc)
+app.on('will-quit', exitPyProc)
+
 function createWindow() {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'preload.js'),
+            nodeIntegration: true,
+            enableRemoteModule: true
         }
     })
 

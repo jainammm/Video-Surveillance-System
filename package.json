@@ -1,7 +1,7 @@
 {
-  "name": "Video-Surveillance-System",
+  "name": "video-surveillance-system",
   "version": "1.0.0",
-  "description": "",
+  "description": "Video Surveillance System",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jainammm/Video-Surveillance-System#readme",
   "devDependencies": {
-    "electron": "^11.0.1"
-  }
+    "electron": "^11.0.2"
+  },
+  "dependencies": {}
 }
