@@ -1,24 +1,46 @@
 {
-  "name": "video-surveillance-system",
-  "version": "1.0.0",
-  "description": "Video Surveillance System",
-  "main": "main.js",
+  "name": "frontend",
+  "version": "0.1.0",
+  "main": "public/main.js",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.5.0",
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
+  },
   "scripts": {
-    "start": "electron ."
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-start": "electron ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jainammm/Video-Surveillance-System.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jainammm/Video-Surveillance-System/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/jainammm/Video-Surveillance-System#readme",
   "devDependencies": {
-    "electron": "^11.0.2"
-  },
-  "dependencies": {}
+    "electron": "^11.0.4"
+  }
 }

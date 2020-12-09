@@ -1,42 +1,4 @@
-body {
-    font-family: 'Muli';
-    font-size: 22px;
-}
-
-
-/*
-Removes white gap between slides - chagnge to base color of slide images
-*/
-
-.carousel {
-    background: #007aeb;
-}
-
-
-/*
-  Forces image to be 100% width and not max width of 100%
-  */
-
-.carousel-item .img-fluid {
-    width: 100%;
-}
-
-
-/* 
-  anchors are inline so you need ot make them block to go full width
-  */
-
-.carousel-item a {
-    display: block;
-    width: 100%;
-}
-
-@import"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
 @import"https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700";
-body {
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 18px
-}
 
 .backto {
     background: #039;
