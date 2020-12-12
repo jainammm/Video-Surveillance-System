@@ -102,7 +102,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -129,7 +128,7 @@ dmypy.json
 .pyre/
 
 /node_modules
-/.vscode
+.vscode
 /frontend/node_modules
 
 # dependencies
