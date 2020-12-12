@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import NavBar from './screens/Home';
+import './index.css';
 import Home from './screens/Home';
 
 function App() {

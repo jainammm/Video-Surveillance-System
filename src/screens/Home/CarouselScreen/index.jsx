@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel'
 
 function CarouselScreen() {
     return (
-        <Carousel>
+        <Carousel style={{marginTop: "24px"}}>
             <Carousel.Item>
                 <center>
                     <img
