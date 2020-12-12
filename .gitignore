@@ -154,3 +154,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .eslintcache
+
+test_data
