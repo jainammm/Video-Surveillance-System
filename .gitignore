@@ -156,3 +156,5 @@ yarn-error.log*
 .eslintcache
 
 test_data
+backend/celerydb.sqlite
+backend/service/yolo/yolo-coco
