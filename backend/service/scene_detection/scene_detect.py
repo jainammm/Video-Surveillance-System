@@ -3,6 +3,8 @@ from scenedetect import VideoManager
 from scenedetect import SceneManager
 from service.scene_detection.generate_image import generate_images
 
+from service.yolo.yolo import yolo_images
+
 # For content-aware scene detection:
 from scenedetect.detectors import ContentDetector
 
@@ -30,5 +32,7 @@ def find_scenes(video_path, threshold=30.0):
 
     image_filenames = generate_images(scene_list, video_manager, '$VIDEO_NAME-Scene-$SCENE_NUMBER-$IMAGE_NUMBER',
                          output_dir='test_data/scenes-airport')
+    
+    yolo_images('test_data/scenes-airport', 'test_data/scenes-airport/yolo')
 
     return scene_list, image_filenames

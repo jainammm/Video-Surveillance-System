@@ -1,20 +1,24 @@
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
 from os import path
-from service.scene_detection.scene_detect import find_scenes
+
+from celery_worker.tasks import find_scenes_worker
 
 router = APIRouter()
+
 
 class FileDetails(BaseModel):
     filePath: str
 
+
 @router.post("/")
-async def uploadFile(fileDetails: FileDetails):
+async def uploadFile(fileDetails: FileDetails,):
     if not path.exists(fileDetails.filePath):
         raise HTTPException(
             status_code=403, detail="Please send correct file path!"
         )
 
-    scenes, image_files = find_scenes(fileDetails.filePath)
+    result = find_scenes_worker.delay(fileDetails.filePath)
+    print(result.traceback)
 
-    return {"scenes": scenes, "images": image_files }
+    return {"msg": "proccessing"}
