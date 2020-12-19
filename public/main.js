@@ -3,17 +3,29 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
 const createPyProc = () => {
+
+    // Video Surveillance System Server 
     let port = '8000'
-    pyProc = require('child_process').spawn('uvicorn', ['backend.api:app', '--port=' + port])
+    pyProc = require('child_process').spawn('uvicorn', 
+        ['main:app', '--port=' + port], {cwd:'backend'})    
     if (pyProc != null) {
         console.log('fastapi started')
+    }
+
+    // Celery Worker 
+    pyCeleryProc = require('child_process').spawn('celery',
+        ['-A', 'celery_worker', 'worker', '-l', 'info'], {cwd:'backend'})
+    if (pyCeleryProc != null) {
+        console.log('celery started')
     }
 }
 
 const exitPyProc = () => {
     pyProc.kill()
     pyProc = null
-    pyPort = null
+
+    pyCeleryProc.kill()
+    pyCeleryProc = null
 }
 
 app.on('ready', createPyProc)
