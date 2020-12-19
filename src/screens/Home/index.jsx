@@ -1,4 +1,3 @@
-import NavBar from '../../components/NavBar'
 import ModelsOverviewCard from '../../components/ModelsOverviewCard'
 import CarouselScreen from './CarouselScreen'
 
@@ -8,7 +7,6 @@ import SceneDetectCardImg from '../../assets/images/SceneDetectCardImg.gif';
 function Home() {
   return (
     <div>
-      <NavBar />
       <CarouselScreen />
       <div className="container" style={{ marginTop: "24px", marginBottom: "24px" }} >
         <div className="row" style={{ marginTop: "24px", gap: "36px" }}>
