@@ -7,7 +7,7 @@ import os
 def yolo_images(input_folder, output_folder, _confidence=.5, _threshold=.3):
 
 	# load the COCO class labels our YOLO model was trained on
-	labelsPath = os.path.sep.join(["service", "yolo", "yolo-coco", "coco.names"])
+	labelsPath = os.getenv("YOLO_LABELS_NAMES_PATH")
 	LABELS = open(labelsPath).read().strip().split("\n")
 
 	os.makedirs(output_folder, exist_ok=True)
@@ -18,8 +18,8 @@ def yolo_images(input_folder, output_folder, _confidence=.5, _threshold=.3):
 		dtype="uint8")
 
 	# derive the paths to the YOLO weights and model configuration
-	weightsPath = os.path.sep.join(["service", "yolo", "yolo-coco", "yolov3.weights"])
-	configPath = os.path.sep.join(["service", "yolo", "yolo-coco", "yolov3.cfg"])
+	weightsPath = os.getenv("YOLO_WEIGHTS_PATH")
+	configPath = os.getenv("YOLO_CONFIG_PATH")
 
 	# load our YOLO object detector trained on COCO dataset (80 classes)
 	print("[INFO] loading YOLO from disk...")

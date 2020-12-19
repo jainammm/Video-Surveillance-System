@@ -157,4 +157,4 @@ yarn-error.log*
 
 test_data
 backend/celerydb.sqlite
-backend/service/yolo/yolo-coco
+backend/models
