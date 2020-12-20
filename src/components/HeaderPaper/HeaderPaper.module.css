@@ -2,3 +2,16 @@
     background: linear-gradient(30deg, #373B44 10%, #4286f4 90%);
     height: 380px;
 }
+
+.headtext{
+    color: white;
+    font-weight: 600;
+    padding: 50px;
+}
+
+.logo{
+    height: 200px;
+}
+
+.tryButton{
+}

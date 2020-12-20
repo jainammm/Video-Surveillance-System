@@ -1,0 +1,26 @@
+.root {
+    align-content: space-between;
+    width: 100%;
+    display: flex;
+}
+
+.title {
+    padding: 10px;
+}
+
+.menu {
+    flex-grow: 1;
+}
+
+.link {
+    color: white;
+}
+
+.link:hover,
+:active,
+:focus,
+:visited {
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
