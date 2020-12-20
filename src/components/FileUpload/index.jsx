@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -6,7 +7,7 @@ import axios from '../../core/HttpClient'
 
 import classes from './FileUpload.module.css';
 
-export default class FileUpload extends Component {
+class FileUpload extends Component {
 
     state = {
         filePath:''
@@ -25,6 +26,7 @@ export default class FileUpload extends Component {
                 filePath: this.state.filePath,
             }).then((res) => {
                 console.log(res)
+                this.props.history.push('/try-yolo/yolo-success')
             }).catch((err) => {
                 console.log(err);
             });
@@ -56,3 +58,5 @@ export default class FileUpload extends Component {
         )
     }
 }
+
+export default withRouter(FileUpload)

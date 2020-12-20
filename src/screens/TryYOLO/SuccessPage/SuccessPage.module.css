@@ -1,0 +1,30 @@
+.successMessage {
+    text-align: center;
+    
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.successMessage__title {
+    color: #3DC480;
+    transform: translateY(25px);
+    transition: all 200ms ease;
+}
+
+.successMessage__icon {
+    max-width: 75px;
+}
+
+.successMessage__content {
+    transform: translateY(25px);
+    opacity: 1;
+    transition: all 200ms ease;
+    transition-delay: 50ms;
+}
+
+circle {
+    fill:  #3DC480;
+}
