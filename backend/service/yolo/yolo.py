@@ -25,6 +25,8 @@ def yolo_images(input_folder, output_folder, _confidence=.5, _threshold=.3):
 	print("[INFO] loading YOLO from disk...")
 	net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
 
+	AllClassIDS = []
+
 	for i, path in enumerate(os.listdir(input_folder)):
 		if not path.endswith(".jpg"):
 			continue
@@ -111,3 +113,7 @@ def yolo_images(input_folder, output_folder, _confidence=.5, _threshold=.3):
 		# show the output image
 		# cv2.imshow("Image", image)
 		cv2.imwrite(os.path.join(output_folder, path), image)
+
+		AllClassIDS += classIDs
+
+	return AllClassIDS

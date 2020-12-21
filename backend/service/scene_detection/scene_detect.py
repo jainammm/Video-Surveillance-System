@@ -30,9 +30,8 @@ def find_scenes(video_path, threshold=30.0):
     # Each returned scene is a tuple of the (start, end) timecode.
     scene_list = scene_manager.get_scene_list(base_timecode)
 
+    output_dir='test_data/scenes-airport'
     image_filenames = generate_images(scene_list, video_manager, '$VIDEO_NAME-Scene-$SCENE_NUMBER-$IMAGE_NUMBER',
-                         output_dir='test_data/scenes-airport')
-    
-    yolo_images('test_data/scenes-airport', 'test_data/scenes-airport/yolo')
+                         output_dir=output_dir)
 
-    return scene_list, image_filenames
+    return scene_list, image_filenames, output_dir

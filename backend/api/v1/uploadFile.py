@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
 from os import path
 
-from celery_worker.tasks import find_scenes_worker
+from celery_worker.tasks import find_scenes_task, yolo_task
 
 router = APIRouter()
 
@@ -17,8 +17,6 @@ async def uploadFile(fileDetails: FileDetails,):
         raise HTTPException(
             status_code=403, detail="Please send correct file path!"
         )
-
-    result = find_scenes_worker.delay(fileDetails.filePath)
-    print(result.traceback)
+    find_scenes_task.delay(fileDetails.filePath)
 
     return {"msg": "proccessing"}
