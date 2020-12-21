@@ -1,0 +1,10 @@
+.accordian{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    width: 100%;
+}
+
+.success_icon{
+    color: green;
+}

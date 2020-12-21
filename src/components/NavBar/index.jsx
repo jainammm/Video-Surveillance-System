@@ -25,10 +25,10 @@ function NavBar() {
           </IconButton>
 
           <div className={classes.menu}>
-            <Link to='/dashboard'>
-              <Button color="inherit">Dashboard</Button>
-            </Link>
-            <Button color="inherit">Contact</Button>
+              <Link to='/dashboard' className={classes.link}>
+                <Button color="inherit">Dashboard</Button>
+              </Link>
+              <Button color="inherit">Contact</Button>
           </div>
         </Toolbar>
       </AppBar>

@@ -25,6 +25,6 @@
     transition-delay: 50ms;
 }
 
-circle {
+.SuccessPage circle {
     fill:  #3DC480;
 }
