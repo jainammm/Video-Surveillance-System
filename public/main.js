@@ -14,7 +14,7 @@ const createPyProc = () => {
 
     // Celery Worker 
     pyCeleryProc = require('child_process').spawn('celery',
-        ['-A', 'celery_worker', 'worker', '-l', 'info'], {cwd:'backend'})
+        ['-A', 'celery_worker', 'worker', '-l', 'info', '-c', '1'], {cwd:'backend'})
     if (pyCeleryProc != null) {
         console.log('celery started')
     }
