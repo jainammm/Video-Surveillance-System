@@ -93,7 +93,7 @@ def generate_images(scene_list, video_manager,
                     IMAGE_NUMBER=image_num_format % (j + 1),
                     FRAME_NUMBER=image_timecode.get_frames()),
                                         image_extension)
-                image_filenames[i].append(file_path)
+                image_filenames[i].append(os.path.join(output_dir, file_path))
                 cv2.imwrite(
                     get_and_create_path(
                         file_path,

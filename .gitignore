@@ -157,4 +157,5 @@ yarn-error.log*
 
 test_data
 backend/celerydb.sqlite
+backend/db.json
 backend/models

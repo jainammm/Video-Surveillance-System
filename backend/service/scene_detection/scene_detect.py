@@ -10,7 +10,7 @@ from scenedetect.detectors import ContentDetector
 
 import os
 
-def find_scenes(video_path, threshold=30.0):
+def find_scenes(video_path, output_dir='test_data/scenes-airport', threshold=30.0):
     # Create our video & scene managers, then add the detector.
     video_manager = VideoManager([video_path])
     scene_manager = SceneManager()
@@ -30,7 +30,6 @@ def find_scenes(video_path, threshold=30.0):
     # Each returned scene is a tuple of the (start, end) timecode.
     scene_list = scene_manager.get_scene_list(base_timecode)
 
-    output_dir='test_data/scenes-airport'
     image_filenames = generate_images(scene_list, video_manager, '$VIDEO_NAME-Scene-$SCENE_NUMBER-$IMAGE_NUMBER',
                          output_dir=output_dir)
 

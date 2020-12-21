@@ -2,3 +2,5 @@ fastapi==0.60.1
 uvicorn==0.12.3
 SQLAlchemy==1.3.21
 celery==5.0.5
+tinydb==4.3.0
+python-dotenv==0.15.0

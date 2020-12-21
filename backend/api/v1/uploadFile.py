@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from os import path
 
 from celery_worker.tasks import find_scenes_task, yolo_task
+from storage.taskDBHelper import insert_start_task
 
 router = APIRouter()
 
@@ -17,6 +18,7 @@ async def uploadFile(fileDetails: FileDetails,):
         raise HTTPException(
             status_code=403, detail="Please send correct file path!"
         )
-    find_scenes_task.delay(fileDetails.filePath)
+    db_id = insert_start_task(fileDetails.filePath)
+    find_scenes_task.delay(fileDetails.filePath, db_id)
 
     return {"msg": "proccessing"}
