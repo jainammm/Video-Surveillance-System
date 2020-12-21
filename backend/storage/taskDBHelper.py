@@ -35,3 +35,6 @@ def insert_yolo_result(id, total_objects):
     task_table.update({
         'models_result': old_result['models_result']
     }, doc_ids=[id])
+
+def get_all_tasks():
+    return task_table.all()

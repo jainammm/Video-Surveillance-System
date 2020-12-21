@@ -10,28 +10,30 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import classes from './NavBar.module.css';
 
 function NavBar() {
-    return (
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                            <VideocamIcon />
-                            <Link to='/' className={classes.link}>
-                            <Typography variant="h6" className={classes.title}>
-                                Video Surveillance System
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <VideocamIcon />
+            <Link to='/' className={classes.link}>
+              <Typography variant="h6" className={classes.title}>
+                Video Surveillance System
                         </Typography>
-                        </Link>
-                        </IconButton>
-                    
-                    <div className={classes.menu}>
-                        <Button color="inherit">Dashboard</Button>
-                        <Button color="inherit">Contact</Button>
-                    </div>
-                </Toolbar>
-            </AppBar>
-        </div>
-    );
+            </Link>
+          </IconButton>
+
+          <div className={classes.menu}>
+            <Link to='/dashboard'>
+              <Button color="inherit">Dashboard</Button>
+            </Link>
+            <Button color="inherit">Contact</Button>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
 export default NavBar;

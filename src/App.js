@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import './index.css';
 import NavBar from './components/NavBar';
+import Dashboard from './screens/Dashboard';
 import Home from './screens/Home';
 import TryYOLO from './screens/TryYOLO'
 import YoloSuccessPage from './screens/TryYOLO/SuccessPage'
@@ -18,6 +19,7 @@ function App() {
               <Route exact path='/' component={Home}></Route> 
               <Route exact path='/try-yolo' component={TryYOLO}></Route>
               <Route exact path='/try-yolo/yolo-success' component={YoloSuccessPage}></Route> 
+              <Route exact path='/dashboard' component={Dashboard}></Route>
             </Switch> 
         </div>
       </ThemeProvider>
