@@ -25,6 +25,6 @@
     transition-delay: 50ms;
 }
 
-.SuccessPage circle {
+.successMessage__icon circle {
     fill:  #3DC480;
 }
