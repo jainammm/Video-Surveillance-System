@@ -11,6 +11,9 @@ const theme = createMuiTheme({
       main: green[600],
     },
   },
+  typography: {
+    "fontFamily": "Muli",
+   },
 });
 
 export default theme;
