@@ -7,11 +7,11 @@ import styles from './HeaderPaper.module.css';
 
 function HeaderPaper(props) {
   return (
-    <Paper className={styles.paper}>
+    <Paper className={styles.paper} style={{backgroundImage:`url(${props.image})`, boxShadow:'inset 0 0 0 2000px rgba(0, 0, 0, 0.3)'}}>
       <Grid container spacing={3} justify="center"
         alignItems="center" className={styles.logo}>
         <Grid item xs={4}>
-          <h1 className={styles.headtext}>YOLO</h1>
+          <h1 className={styles.headtext}>{props.name}</h1>
           <Box>
             <Button variant="contained" size="small" className={styles.tryButton}
               onClick={props.handleOpen}>

@@ -1,5 +1,7 @@
 .paper {
     background: linear-gradient(30deg, #373B44 10%, #4286f4 90%);
+    background-position-y: center;
+    background-size: cover;
     height: 380px;
 }
 
@@ -14,4 +16,5 @@
 }
 
 .tryButton{
+    font-weight: 600;
 }

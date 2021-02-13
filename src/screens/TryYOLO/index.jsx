@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import Modal from '@material-ui/core/Modal';
 
 import HeaderPaper from '../../components/HeaderPaper';
+import ModelDetail from '../../components/ModelDetail'
 import FileUpload from '../../components/FileUpload';
 
 import classes from './TryYOLO.module.css';
+
+import YoloHeaderImg from '../../assets/images/Yolo.png';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -40,7 +43,8 @@ function TryYOLO() {
 
   return (
     <div>
-      <HeaderPaper handleOpen={handleOpen} />
+      <HeaderPaper name="YOLO" image={YoloHeaderImg} handleOpen={handleOpen} />
+      <ModelDetail detail="" />
       <Modal
         open={open}
         onClose={handleClose}
