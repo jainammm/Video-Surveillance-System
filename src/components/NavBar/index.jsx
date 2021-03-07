@@ -3,7 +3,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import VideocamIcon from '@material-ui/icons/Videocam';
 
@@ -25,10 +24,10 @@ function NavBar() {
           </IconButton>
 
           <div className={classes.menu}>
-              <Link to='/dashboard' className={classes.link}>
-                <Button color="inherit">Dashboard</Button>
-              </Link>
-              <Button color="inherit">Contact</Button>
+            <Link to='/dashboard' className={classes.link}>
+              <Button color="inherit">Dashboard</Button>
+            </Link>
+            <Button color="inherit">Contact</Button>
           </div>
         </Toolbar>
       </AppBar>

@@ -13,6 +13,10 @@ def insert_start_task(video_path):
         'models_result': {}
     })
 
+def finish_task(id):
+    task_table.update({
+        'status': 'finished'
+    }, doc_ids=[id])
 
 def insert_scene_detection_result(id, scenes, output_dir, image_filenames):
     task_table.update({

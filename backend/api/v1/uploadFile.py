@@ -10,7 +10,8 @@ router = APIRouter()
 
 class FileDetails(BaseModel):
     filePath: str
-
+    sceneDetect: bool
+    yolo: bool
 
 @router.post("/")
 async def uploadFile(fileDetails: FileDetails,):
@@ -19,6 +20,7 @@ async def uploadFile(fileDetails: FileDetails,):
             status_code=403, detail="Please send correct file path!"
         )
     db_id = insert_start_task(fileDetails.filePath)
-    find_scenes_task.delay(fileDetails.filePath, db_id)
+    if(fileDetails.sceneDetect):
+        find_scenes_task.delay(fileDetails.filePath, db_id, fileDetails.yolo)
 
     return {"msg": "proccessing"}

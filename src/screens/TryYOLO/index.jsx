@@ -52,7 +52,7 @@ function TryYOLO() {
         aria-describedby="simple-modal-description"
       >
         <div style={modalStyle} className={classes.paper}>
-          <FileUpload />
+          <FileUpload sceneDetection={true} yolo={true} />
         </div>
       </Modal>
     </div>

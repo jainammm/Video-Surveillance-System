@@ -10,7 +10,7 @@ import classes from './FileUpload.module.css';
 class FileUpload extends Component {
 
     state = {
-        filePath:''
+        filePath: ''
     }
 
     handleFileUpload = (e) => {
@@ -21,12 +21,14 @@ class FileUpload extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault();
-        if(this.state.filePath != '')
+        if (this.state.filePath !== '')
             axios.post("/api/v1/uploadFile/", {
                 filePath: this.state.filePath,
+                sceneDetect: this.props.sceneDetection,
+                yolo: this.props.yolo
             }).then((res) => {
                 console.log(res)
-                this.props.history.push('/try-yolo/yolo-success')
+                this.props.history.push('/upload-success')
             }).catch((err) => {
                 console.log(err);
             });

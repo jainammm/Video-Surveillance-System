@@ -20,7 +20,6 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { grey } from '@material-ui/core/colors';
 
 import styles from './Dashboard.module.css';
 
@@ -78,6 +77,7 @@ function Dashboard() {
         "/api/v1/dashboard/task-details"
       )
       .then((res) => {
+        console.log(res)
         setData(res.data)
       })
       .catch((e) => {
@@ -90,7 +90,7 @@ function Dashboard() {
   const handleOpen = (image_path) => {
     let imgsrc = images('./' + image_path)
     setmodalBody(
-      <img width="700px" src={imgsrc.default} />
+      <img width="700px" src={imgsrc.default} alt='' />
     )
     setOpen(true);
   };
@@ -111,18 +111,18 @@ function Dashboard() {
             <List className={styles.accordian}>
               <ListItem>
                 <Typography className={classes.heading}>
-                  {task.video_path.split(/(\\|\/)/g).pop()} 
+                  {task.video_path.split(/(\\|\/)/g).pop()}
                 </Typography>
               </ListItem>
               <ListItem>
-              <Typography className={classes.timestamp}>
-                {task.timestamp}
-              </Typography>
+                <Typography className={classes.timestamp}>
+                  {task.timestamp}
+                </Typography>
               </ListItem>
               <ListItem>
-              {task.models_result.yolo?
-                <CheckCircleIcon className={styles.success_icon} />:
-                <CircularProgress />}
+                {task.status === 'finished' ?
+                  <CheckCircleIcon className={styles.success_icon} /> :
+                  <CircularProgress />}
               </ListItem>
             </List>
           </AccordionSummary>
