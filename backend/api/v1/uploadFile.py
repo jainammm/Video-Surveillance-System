@@ -12,6 +12,7 @@ class FileDetails(BaseModel):
     filePath: str
     sceneDetect: bool
     yolo: bool
+    textRecog: bool
 
 @router.post("/")
 async def uploadFile(fileDetails: FileDetails,):
@@ -21,6 +22,6 @@ async def uploadFile(fileDetails: FileDetails,):
         )
     db_id = insert_start_task(fileDetails.filePath)
     if(fileDetails.sceneDetect):
-        find_scenes_task.delay(fileDetails.filePath, db_id, fileDetails.yolo)
+        find_scenes_task.delay(fileDetails.filePath, db_id, fileDetails.yolo, fileDetails.textRecog)
 
     return {"msg": "proccessing"}
