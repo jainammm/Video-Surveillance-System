@@ -127,7 +127,7 @@ function Dashboard() {
             </List>
           </AccordionSummary>
           <AccordionDetails>
-            {task.models_result.yolo ?
+            {task.status == "finished" ?
               <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                   <TableHead>
