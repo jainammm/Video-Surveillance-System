@@ -30,7 +30,8 @@ def yolo_task(self, image_paths, db_id):
 
 @app.task(track_started=True, bind=True)
 def text_recognition_task(self, image_paths, db_id):
-    east_text_recog_images(image_paths, os.path.join(os.path.dirname(image_paths), 'text_recognition'))
+    allTextResults = east_text_recog_images(image_paths, os.path.join(os.path.dirname(image_paths), 'text_recognition'))
+    print(allTextResults)
 
 @app.task(track_started=True, bind=True)
 def finish_DB_task(self, db_id):

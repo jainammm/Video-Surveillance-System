@@ -1,12 +1,12 @@
 from imutils.object_detection import non_max_suppression
 import numpy as np
-import argparse
+import pytesseract
 import time
 import os
 import cv2
 
 def east_text_recog_images(input_folder, output_folder, _min_confidence=0.5,
-                                _width=320, _height=320):
+                                _width=320, _height=320, _padding=0.0):
 
     modelPath = os.getenv("EAST_TEXT_RECOG_MODEL")
 
@@ -16,17 +16,19 @@ def east_text_recog_images(input_folder, output_folder, _min_confidence=0.5,
 
     os.makedirs(output_folder, exist_ok=True)
 
-    for i, path in enumerate(os.listdir(input_folder)):
+    allTextResults = []
+
+    for _, path in enumerate(os.listdir(input_folder)):
         if not path.endswith(".jpg"):
             continue
 
         image = cv2.imread(os.path.join(input_folder, path))
         orig = image.copy()
-        (H, W) = image.shape[:2]
+        (origH, origW) = image.shape[:2]
 
         (newW, newH) = (_width, _height)
-        rW = W / float(newW)
-        rH = H / float(newH)
+        rW = origW / float(newW)
+        rH = origH / float(newH)
 
         image = cv2.resize(image, (newW, newH))
         (H, W) = image.shape[:2]
@@ -103,6 +105,9 @@ def east_text_recog_images(input_folder, output_folder, _min_confidence=0.5,
         # boxes
         boxes = non_max_suppression(np.array(rects), probs=confidences)
 
+        # initialize the list of results
+        resultTexts = []
+
         # loop over the bounding boxes
         for (startX, startY, endX, endY) in boxes:
             # scale the bounding box coordinates based on the respective
@@ -112,7 +117,36 @@ def east_text_recog_images(input_folder, output_folder, _min_confidence=0.5,
             endX = int(endX * rW)
             endY = int(endY * rH)
 
+            # in order to obtain a better OCR of the text we can potentially
+            # apply a bit of padding surrounding the bounding box -- here we
+            # are computing the deltas in both the x and y directions
+            dX = int((endX - startX) * _padding)
+            dY = int((endY - startY) * _padding)
+
+            # apply padding to each side of the bounding box, respectively
+            startX = max(0, startX - dX)
+            startY = max(0, startY - dY)
+            endX = min(origW, endX + (dX * 2))
+            endY = min(origH, endY + (dY * 2))
+
+            # extract the actual padded ROI
+            roi = orig[startY:endY, startX:endX]
+
+            # in order to apply Tesseract v4 to OCR text we must supply
+            # (1) a language, (2) an OEM flag of 4, indicating that the we
+            # wish to use the LSTM neural net model for OCR, and finally
+            # (3) an OEM value, in this case, 7 which implies that we are
+            # treating the ROI as a single line of text
+            config = ("-l eng --oem 1 --psm 7")
+            text = pytesseract.image_to_string(roi, config=config)
+            resultTexts.append(text)
+
+
             # draw the bounding box on the image
             cv2.rectangle(orig, (startX, startY), (endX, endY), (0, 255, 0), 2)
 
+        allTextResults.append({'image_path': os.path.join(output_folder, path), 'text': resultTexts})
+
         cv2.imwrite(os.path.join(output_folder, path), orig)
+
+    return allTextResults
