@@ -32,9 +32,17 @@ def insert_scene_detection_result(id, scenes, output_dir, image_filenames):
 
 def insert_yolo_result(id, total_objects):
     old_result = task_table.get(doc_id=id)
-    print(old_result)
     old_result['models_result']['yolo'] = {
         'total_objects' : total_objects
+    }
+    task_table.update({
+        'models_result': old_result['models_result']
+    }, doc_ids=[id])
+
+def insert_text_recog_result(id, total_text_results):
+    old_result = task_table.get(doc_id=id)
+    old_result['models_result']['text_recog'] = {
+        'total_text_result' : total_text_results
     }
     task_table.update({
         'models_result': old_result['models_result']

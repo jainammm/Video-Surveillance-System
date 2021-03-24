@@ -31,7 +31,6 @@ def yolo_images(input_folder, output_folder, _confidence=.5, _threshold=.3):
     for i, path in enumerate(os.listdir(input_folder)):
         if not path.endswith(".jpg"):
             continue
-        print(path)
 
         # load our input image and grab its spatial dimensions
         image = cv2.imread(os.path.join(input_folder, path))

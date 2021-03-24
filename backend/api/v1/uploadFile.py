@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from os import path
 
-from celery_worker.tasks import find_scenes_task, yolo_task
+from celery_worker.tasks import find_scenes_task
 from storage.taskDBHelper import insert_start_task
 
 router = APIRouter()
