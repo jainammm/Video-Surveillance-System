@@ -22,6 +22,7 @@ import ListItem from '@material-ui/core/ListItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import styles from './Dashboard.module.css';
+import { Switch } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,6 +100,12 @@ function Dashboard() {
     setOpen(false);
   };
 
+  const models = {
+    scene_detection: "Scene Detection",
+    yolo: "Yolo",
+    text_recog: "Text Recognition"
+  }
+
   return (
     <div className={classes.root}>
       {data.map((task, i) =>
@@ -112,6 +119,15 @@ function Dashboard() {
               <ListItem>
                 <Typography className={classes.heading}>
                   {task.video_path.split(/(\\|\/)/g).pop()}
+                </Typography>
+              </ListItem>
+              <ListItem>
+                <Typography className={classes.heading}>
+                  {
+                    Object.keys(task.models_result).map((k, v) => (
+                      <p><b>{models[k]}</b></p>
+                    ))
+                  }
                 </Typography>
               </ListItem>
               <ListItem>
@@ -130,30 +146,66 @@ function Dashboard() {
             {task.status === "finished" ?
               <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Image</TableCell>
-                      <TableCell align="right">Total Objects</TableCell>
-                      <TableCell align="right">Objects</TableCell>
-                      <TableCell align="right">View</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {task.models_result.yolo?.total_objects.map((row, i) => (
-                      <TableRow key={i}>
-                        <TableCell component="th" scope="row">
-                          {row.image_path.split(/(\\|\/)/g).pop()}
-                        </TableCell>
-                        <TableCell align="right">{row.objects.length}</TableCell>
-                        <TableCell align="right">{row.objects.map((ob, ob_i) =>
-                          <Chip key={ob_i} label={`${ob.object} ${ob.confidence.toFixed(2)}`} />
-                        )}</TableCell>
-                        <TableCell className={classes.tableCell} onClick={() => {
-                          handleOpen(row.image_path)
-                        }} align="right"><VisibilityIcon /></TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
+                  {
+                    task.models_result.yolo && (
+                      <div>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>Image</TableCell>
+                            <TableCell align="right">Total Objects</TableCell>
+                            <TableCell align="right">Objects</TableCell>
+                            <TableCell align="right">View</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {task.models_result.yolo.total_objects.map((row, i) => (
+                            <TableRow key={i}>
+                              <TableCell component="th" scope="row">
+                                {row.image_path.split(/(\\|\/)/g).pop()}
+                              </TableCell>
+                              <TableCell align="right">{row.objects.length}</TableCell>
+                              <TableCell align="right">{row.objects.map((ob, ob_i) =>
+                                <Chip key={ob_i} label={`${ob.object} ${ob.confidence.toFixed(2)}`} />
+                              )}</TableCell>
+                              <TableCell className={classes.tableCell} onClick={() => {
+                                handleOpen(row.image_path)
+                              }} align="right"><VisibilityIcon /></TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </div>)
+                  }
+
+                  {
+                    task.models_result.text_recog && (
+                      <div>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>Image</TableCell>
+                            <TableCell align="right">Total Texts</TableCell>
+                            <TableCell align="right">Texts</TableCell>
+                            <TableCell align="right">View</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {task.models_result.text_recog.total_text_result.map((row, i) => (
+                            <TableRow key={i}>
+                              <TableCell component="th" scope="row">
+                                {row.image_path.split(/(\\|\/)/g).pop()}
+                              </TableCell>
+                              <TableCell align="right">{row.text.length}</TableCell>
+                              <TableCell align="right">{row.text.map((ob, ob_i) =>
+                                <Chip key={ob_i} label={`${ob}`} />
+                              )}</TableCell>
+                              <TableCell className={classes.tableCell} onClick={() => {
+                                handleOpen(row.image_path)
+                              }} align="right"><VisibilityIcon /></TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </div>)
+                  }
+
                 </Table>
               </TableContainer> : <p>processing...</p>}
           </AccordionDetails>
