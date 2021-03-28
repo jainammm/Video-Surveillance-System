@@ -7,6 +7,7 @@ import Dashboard from './screens/Dashboard';
 import Home from './screens/Home';
 import TryYOLO from './screens/TryYOLO'
 import TrySceneDetection from './screens/TrySceneDetection'
+import TryTextDetection from './screens/TryTextDetection'
 import SuccessPage from './screens/SuccessPage'
 import theme from './theme.js';
 
@@ -20,6 +21,7 @@ function App() {
             <Route exact path='/' component={Home}></Route>
             <Route exact path='/try-yolo' component={TryYOLO}></Route>
             <Route exact path='/try-scene-detection' component={TrySceneDetection}></Route>
+            <Route exact path='/try-text-detection' component={TryTextDetection}></Route>
             <Route exact path='/upload-success' component={SuccessPage}></Route>
             <Route exact path='/dashboard' component={Dashboard}></Route>
           </Switch>

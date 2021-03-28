@@ -5,9 +5,9 @@ import HeaderPaper from '../../components/HeaderPaper';
 import ModelDetail from '../../components/ModelDetail'
 import FileUpload from '../../components/FileUpload';
 
-import classes from './TrySceneDetection.module.css';
+import classes from './TryTextDetection.module.css';
 
-import YoloHeaderImg from '../../assets/images/SceneDetectCardImg.gif';
+import TextHeaderImg from '../../assets/images/text_detection.jpeg';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -24,10 +24,10 @@ function getModalStyle() {
     };
 }
 
-function TrySceneDetection() {
+function TryTextDetection() {
 
     useEffect(() => {
-        document.title = 'Scene Detection | Video Surveillance System'
+        document.title = 'Text Detection | Video Surveillance System'
     });
 
     const [modalStyle] = React.useState(getModalStyle);
@@ -43,7 +43,7 @@ function TrySceneDetection() {
 
     return (
         <div>
-            <HeaderPaper name="Scene Detection" image={YoloHeaderImg} handleOpen={handleOpen} />
+            <HeaderPaper name="Text Detection" image={TextHeaderImg} handleOpen={handleOpen} />
             <ModelDetail detail="" />
             <Modal
                 open={open}
@@ -52,11 +52,11 @@ function TrySceneDetection() {
                 aria-describedby="simple-modal-description"
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <FileUpload sceneDetection={true} />
+                    <FileUpload sceneDetection={true} yolo={false} textDetection={true} />
                 </div>
             </Modal>
         </div>
     )
 }
 
-export default TrySceneDetection
+export default TryTextDetection

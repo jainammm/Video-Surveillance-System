@@ -25,7 +25,8 @@ class FileUpload extends Component {
             axios.post("/api/v1/uploadFile/", {
                 filePath: this.state.filePath,
                 sceneDetect: this.props.sceneDetection,
-                yolo: this.props.yolo
+                yolo: this.props.yolo,
+                textRecog: this.props.textDetection
             }).then((res) => {
                 console.log(res)
                 this.props.history.push('/upload-success')

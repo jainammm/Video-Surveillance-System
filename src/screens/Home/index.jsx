@@ -5,6 +5,7 @@ import CarouselScreen from './CarouselScreen'
 
 import YoloCardImg from '../../assets/images/YoloCardImg.png';
 import SceneDetectCardImg from '../../assets/images/SceneDetectCardImg.gif';
+import TextDetectCardImg from '../../assets/images/text_detection.jpeg';
 
 function Home() {
 
@@ -21,6 +22,8 @@ function Home() {
             description="Identify and locate objects in the video using Computer Vision technique!" />
           <ModelsOverviewCard title="Scene Detection" image={SceneDetectCardImg} link='/try-scene-detection'
             description="Detect transitions between shots in a video for statistical analysis of videos!" />
+          <ModelsOverviewCard title="Text Detection" image={TextDetectCardImg} link='/try-text-detection'
+            description="Detect text appeared in a video!" />
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+from typing import Optional
+
 from os import path
 
 from celery_worker.tasks import find_scenes_task
@@ -10,9 +12,9 @@ router = APIRouter()
 
 class FileDetails(BaseModel):
     filePath: str
-    sceneDetect: bool
-    yolo: bool
-    textRecog: bool
+    sceneDetect: Optional[bool] = False
+    yolo: Optional[bool] = False
+    textRecog: Optional[bool] = False
 
 @router.post("/")
 async def uploadFile(fileDetails: FileDetails,):
