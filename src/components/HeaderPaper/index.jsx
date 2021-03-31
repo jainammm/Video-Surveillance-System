@@ -13,7 +13,7 @@ function HeaderPaper(props) {
         <Grid item xs={4}>
           <h1 className={styles.headtext}>{props.name}</h1>
           <Box>
-            <Button variant="contained" size="large" className={styles.tryButton}
+            <Button variant="contained" size="large" color="primary" className={styles.tryButton}
               onClick={props.handleOpen}>
               Try Now!
             </Button>
