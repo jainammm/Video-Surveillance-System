@@ -82,7 +82,10 @@ function TryCustomModel() {
                 aria-describedby="simple-modal-description"
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <FileUpload sceneDetection={state.scene_detect} yolo={state.yolo} textDetection={state.text_detect} />
+                    <FileUpload sceneDetection={state.scene_detect}
+                        yolo={state.yolo}
+                        textDetection={state.text_detect}
+                        handleClose={handleClose} />
                 </div>
             </Modal>
         </div>

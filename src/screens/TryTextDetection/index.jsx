@@ -48,7 +48,7 @@ function TryTextDetection() {
                 aria-describedby="simple-modal-description"
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <FileUpload sceneDetection={true} yolo={false} textDetection={true} />
+                    <FileUpload sceneDetection={true} yolo={false} textDetection={true} handleClose={handleClose} />
                 </div>
             </Modal>
         </div>

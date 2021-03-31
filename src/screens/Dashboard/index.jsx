@@ -10,6 +10,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
+import Moment from 'react-moment';
 
 import DashboardResult from '../../components/DashboardResult'
 
@@ -119,7 +120,7 @@ function Dashboard() {
           </ListItem>
           <ListItem>
             <Typography className={classes.timestamp}>
-              {task.timestamp}
+              <Moment fromNow>{task.timestamp}</Moment>
             </Typography>
           </ListItem>
           <ListItem>

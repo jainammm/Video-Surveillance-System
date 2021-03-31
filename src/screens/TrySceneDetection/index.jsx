@@ -48,7 +48,7 @@ function TrySceneDetection() {
                 aria-describedby="simple-modal-description"
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <FileUpload sceneDetection={true} />
+                    <FileUpload sceneDetection={true} handleClose={handleClose} />
                 </div>
             </Modal>
         </div>

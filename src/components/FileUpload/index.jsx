@@ -43,14 +43,26 @@ class FileUpload extends Component {
 
                         <form onSubmit={this.onSubmit}>
                             <div className={classes.Wrapper}>
-                                <input id="file" name="file" type="file" onChange={this.handleFileUpload} />
+                                <input
+                                    style={{ color: 'white' }}
+                                    id="file" name="file" type="file" onChange={this.handleFileUpload} />
                             </div>
+                            <br />
                             <div>
                                 <Button
+                                    variant="contained"
                                     type="submit"
                                     color="primary"
                                 >
                                     UPLOAD
+                                        </Button>
+                                <Button
+                                    variant="contained"
+                                    type="button"
+                                    className={classes.cancel}
+                                    onClick={this.props.handleClose}
+                                >
+                                    Cancel
                                         </Button>
                             </div>
                         </form>

@@ -1,3 +1,15 @@
 .card{
     padding: 20px;
+    background-color: rgb(29, 26, 26);
+}
+
+.Heading{
+    color : #007ACE;
+    font-weight: 600 ;
+}
+
+.cancel{
+    background-color: red !important;
+    color: white !important;
+    margin-left: 5px;
 }
