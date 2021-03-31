@@ -9,13 +9,9 @@ import classes from './TryTextDetection.module.css';
 
 import TextHeaderImg from '../../assets/images/text_detection.jpeg';
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50;
+    const left = 50;
 
     return {
         top: `${top}%`,

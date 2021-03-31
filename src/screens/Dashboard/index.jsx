@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import axios from '../../core/HttpClient'
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+
 import Paper from '@material-ui/core/Paper';
-import Chip from '@material-ui/core/Chip';
-import VisibilityIcon from '@material-ui/icons/Visibility';
 import Modal from '@material-ui/core/Modal';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+
+import DashboardResult from '../../components/DashboardResult'
 
 import styles from './Dashboard.module.css';
-import { Switch } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,16 +36,15 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     padding: '50px',
+  },
+  button: {
+    margin: 2
   }
 }));
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -86,12 +76,11 @@ function Dashboard() {
       })
   }, [])
 
-  const images = require.context('../../../backend', true);
 
-  const handleOpen = (image_path) => {
-    let imgsrc = images('./' + image_path)
+  const handleOpen = (model, task) => {
+    console.log(task)
     setmodalBody(
-      <img width="700px" src={imgsrc.default} alt='' />
+      <DashboardResult task={{ model: model, task: task }} />
     )
     setOpen(true);
   };
@@ -109,107 +98,36 @@ function Dashboard() {
   return (
     <div className={classes.root}>
       {data.map((task, i) =>
-        <Accordion key={i}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id={i}
-          >
-            <List className={styles.accordian}>
-              <ListItem>
-                <Typography className={classes.heading}>
-                  {task.video_path.split(/(\\|\/)/g).pop()}
-                </Typography>
-              </ListItem>
-              <ListItem>
-                <Typography className={classes.heading}>
-                  {
-                    Object.keys(task.models_result).map((k, v) => (
-                      <p><b>{models[k]}</b></p>
-                    ))
-                  }
-                </Typography>
-              </ListItem>
-              <ListItem>
-                <Typography className={classes.timestamp}>
-                  {task.timestamp}
-                </Typography>
-              </ListItem>
-              <ListItem>
-                {task.status === 'finished' ?
-                  <CheckCircleIcon className={styles.success_icon} /> :
-                  <CircularProgress />}
-              </ListItem>
-            </List>
-          </AccordionSummary>
-          <AccordionDetails>
-            {task.status === "finished" ?
-              <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="simple table">
-                  {
-                    task.models_result.yolo && (
-                      <div>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>Image</TableCell>
-                            <TableCell align="right">Total Objects</TableCell>
-                            <TableCell align="right">Objects</TableCell>
-                            <TableCell align="right">View</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {task.models_result.yolo.total_objects.map((row, i) => (
-                            <TableRow key={i}>
-                              <TableCell component="th" scope="row">
-                                {row.image_path.split(/(\\|\/)/g).pop()}
-                              </TableCell>
-                              <TableCell align="right">{row.objects.length}</TableCell>
-                              <TableCell align="right">{row.objects.map((ob, ob_i) =>
-                                <Chip key={ob_i} label={`${ob.object} ${ob.confidence.toFixed(2)}`} />
-                              )}</TableCell>
-                              <TableCell className={classes.tableCell} onClick={() => {
-                                handleOpen(row.image_path)
-                              }} align="right"><VisibilityIcon /></TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </div>)
-                  }
-
-                  {
-                    task.models_result.text_recog && (
-                      <div>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>Image</TableCell>
-                            <TableCell align="right">Total Texts</TableCell>
-                            <TableCell align="right">Texts</TableCell>
-                            <TableCell align="right">View</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {task.models_result.text_recog.total_text_result.map((row, i) => (
-                            <TableRow key={i}>
-                              <TableCell component="th" scope="row">
-                                {row.image_path.split(/(\\|\/)/g).pop()}
-                              </TableCell>
-                              <TableCell align="right">{row.text.length}</TableCell>
-                              <TableCell align="right">{row.text.map((ob, ob_i) =>
-                                <Chip key={ob_i} label={`${ob}`} />
-                              )}</TableCell>
-                              <TableCell className={classes.tableCell} onClick={() => {
-                                handleOpen(row.image_path)
-                              }} align="right"><VisibilityIcon /></TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </div>)
-                  }
-
-                </Table>
-              </TableContainer> : <p>processing...</p>}
-          </AccordionDetails>
-        </Accordion>
+        <List className={styles.accordian} key={i}>
+          <ListItem>
+            <Typography className={classes.heading}>
+              {task.video_path.split(/(\\|\/)/g).pop()}
+            </Typography>
+          </ListItem>
+          <ListItem>
+            <Typography className={classes.heading}>
+              {
+                Object.keys(task.models_result).map((k, v) => (
+                  <Button variant="contained" size="small" color="primary"
+                    className={classes.button}
+                    onClick={() => { handleOpen(k, task.models_result[k]) }}>
+                    {models[k]}
+                  </Button>
+                ))
+              }
+            </Typography>
+          </ListItem>
+          <ListItem>
+            <Typography className={classes.timestamp}>
+              {task.timestamp}
+            </Typography>
+          </ListItem>
+          <ListItem>
+            {task.status === 'finished' ?
+              <CheckCircleIcon className={styles.success_icon} /> :
+              <CircularProgress />}
+          </ListItem>
+        </List>
       )}
 
       <Modal
