@@ -6,7 +6,7 @@ import TextCarouselImg from '../../../assets/images/carousel/text-detection.jpg'
 
 function CarouselScreen() {
     return (
-        <Carousel style={{marginTop: "24px"}}>
+        <Carousel style={{ marginTop: "24px" }}>
             <Carousel.Item>
                 <center>
                     <img
@@ -27,7 +27,7 @@ function CarouselScreen() {
                         style={{ height: 400 }}
                         className="d-block"
                         src={YoloCarouselImg}
-                        alt="Third slide"
+                        alt="Yolo Object Detection"
                     />
                 </center>
                 <Carousel.Caption>
@@ -41,6 +41,7 @@ function CarouselScreen() {
                         style={{ height: 400 }}
                         className="d-block"
                         src={TextCarouselImg}
+                        alt="Text Recognition"
                     />
                 </center>
                 <Carousel.Caption>

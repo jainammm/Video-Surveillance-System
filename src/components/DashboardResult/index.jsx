@@ -78,7 +78,7 @@ export default function DashboardResult({ task }) {
             <TableContainer component={Paper} className={classes.table}>
                 <Table aria-label="simple table">
                     {
-                        task.model == 'yolo' && (
+                        task.model === 'yolo' && (
                             <div>
                                 <TableHead>
                                     <TableRow>
@@ -108,7 +108,7 @@ export default function DashboardResult({ task }) {
                     }
 
                     {
-                        task.model == 'text_recog' && (
+                        task.model === 'text_recog' && (
                             <div>
                                 <TableHead>
                                     <TableRow>
@@ -138,7 +138,7 @@ export default function DashboardResult({ task }) {
                     }
 
                     {
-                        task.model == 'scene_detection' && (
+                        task.model === 'scene_detection' && (
                             <div>
                                 <TableHead>
                                     <TableRow>

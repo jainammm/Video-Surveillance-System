@@ -6,6 +6,7 @@ import CarouselScreen from './CarouselScreen'
 import YoloCardImg from '../../assets/images/YoloCardImg.png';
 import SceneDetectCardImg from '../../assets/images/SceneDetectCardImg.gif';
 import TextDetectCardImg from '../../assets/images/text_detection.jpeg';
+import CustomModelCardImg from '../../assets/images/custom_model.png';
 
 function Home() {
 
@@ -24,6 +25,8 @@ function Home() {
             description="Detect transitions between shots in a video for statistical analysis of videos!" />
           <ModelsOverviewCard title="Text Detection" image={TextDetectCardImg} link='/try-text-detection'
             description="Detect text appeared in a video!" />
+          <ModelsOverviewCard title="Custom Model" image={CustomModelCardImg} link='/try-custom-model'
+            description="Process video with combination of model." />
         </div>
       </div>
     </div>
