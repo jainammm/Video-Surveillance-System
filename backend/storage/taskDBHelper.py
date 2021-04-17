@@ -13,6 +13,16 @@ def insert_start_task(video_path):
         'models_result': {}
     })
 
+def insert_start_task(video_path, objectParameters, textParameters):
+    return task_table.insert({
+        'status': 'started',
+        'video_path': video_path,
+        'timestamp': str(datetime.now()),
+        'models_result': {},
+        'objectParameters': objectParameters,
+        'textParameters': textParameters
+    })
+
 def finish_task(id):
     task_table.update({
         'status': 'finished'
