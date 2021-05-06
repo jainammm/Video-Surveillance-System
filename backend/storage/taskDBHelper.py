@@ -13,7 +13,7 @@ def insert_start_task(video_path):
         'models_result': {}
     })
 
-def insert_start_task(video_path, objectParameters, textParameters):
+def insert_start_task_with_parameters(video_path, objectParameters, textParameters):
     return task_table.insert({
         'status': 'started',
         'video_path': video_path,

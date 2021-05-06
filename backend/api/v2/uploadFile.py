@@ -5,7 +5,7 @@ from typing import Optional
 from os import path
 
 from celery_worker.tasks import find_scenes_task
-from storage.taskDBHelper import insert_start_task
+from storage.taskDBHelper import insert_start_task_with_parameters
 
 router = APIRouter()
 
@@ -27,7 +27,7 @@ async def uploadFile(fileDetails: FileDetails,):
             status_code=403, detail="Please send non empty parameters!"
         )
 
-    db_id = insert_start_task(fileDetails.filePath, fileDetails.objectParameters, fileDetails.textParameters)
+    db_id = insert_start_task_with_parameters(fileDetails.filePath, fileDetails.objectParameters, fileDetails.textParameters)
     
     isYolo = False
     isTextRecog = False
