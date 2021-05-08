@@ -39,6 +39,15 @@ def insert_scene_detection_result(id, scenes, output_dir, image_filenames):
         }
     }, doc_ids=[id])
 
+def insert_face_recog_result(id, face_recognition_results):
+    old_result = task_table.get(doc_id=id)
+    old_result['models_result']['face_recog'] = {
+        'face_recognition_results' : face_recognition_results
+    }
+    task_table.update({
+        'models_result': old_result['models_result']
+    }, doc_ids=[id])
+
 
 def insert_yolo_result(id, total_objects):
     old_result = task_table.get(doc_id=id)
