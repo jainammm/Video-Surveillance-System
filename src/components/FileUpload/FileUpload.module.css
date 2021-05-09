@@ -1,6 +1,6 @@
 .card{
     padding: 20px;
-    background-color: rgb(29, 26, 26);
+    background-color: rgb(29, 26, 26) !important;
 }
 
 .Heading{
@@ -11,5 +11,5 @@
 .cancel{
     background-color: red !important;
     color: white !important;
-    margin-left: 5px;
+    margin-left: 5px !important;
 }

@@ -7,6 +7,7 @@ import YoloCardImg from '../../assets/images/YoloCardImg.png';
 import SceneDetectCardImg from '../../assets/images/SceneDetectCardImg.gif';
 import TextDetectCardImg from '../../assets/images/text_detection.jpeg';
 import CustomModelCardImg from '../../assets/images/custom_model.png';
+import FaceRecogHeaderImg from '../../assets/images/face_recognition.png';
 
 function Home() {
 
@@ -27,6 +28,10 @@ function Home() {
             description="Detect text appeared in a video!" />
           <ModelsOverviewCard title="Custom Model" image={CustomModelCardImg} link='/try-custom-model'
             description="Process video with combination of model." />
+          <ModelsOverviewCard title="Parametric Scene Detection" image={CustomModelCardImg} link='/try-parametric-model'
+            description="Process video for text and object search." />
+          <ModelsOverviewCard title="Face Recognition" image={FaceRecogHeaderImg} link='/try-custom-model'
+            description="Search face in a video" />
         </div>
       </div>
     </div>

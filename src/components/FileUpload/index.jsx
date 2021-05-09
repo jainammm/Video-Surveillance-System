@@ -22,17 +22,30 @@ class FileUpload extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         if (this.state.filePath !== '')
-            axios.post("/api/v1/uploadFile/", {
-                filePath: this.state.filePath,
-                sceneDetect: this.props.sceneDetection,
-                yolo: this.props.yolo,
-                textRecog: this.props.textDetection
-            }).then((res) => {
-                console.log(res)
-                this.props.history.push('/upload-success')
-            }).catch((err) => {
-                console.log(err);
-            });
+            if (!this.props.parameters)
+                axios.post("/api/v1/uploadFile/", {
+                    filePath: this.state.filePath,
+                    sceneDetect: this.props.sceneDetection,
+                    yolo: this.props.yolo,
+                    textRecog: this.props.textDetection
+                }).then((res) => {
+                    console.log(res)
+                    this.props.history.push('/upload-success')
+                }).catch((err) => {
+                    console.log(err);
+                });
+            else {
+                axios.post("/api/v2/uploadFile/", {
+                    filePath: this.state.filePath,
+                    objectParameters: this.props.parameters.objects.split(','),
+                    textParameters: this.props.parameters.texts.split(',')
+                }).then((res) => {
+                    console.log(res)
+                    this.props.history.push('/upload-success')
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }
     }
     render() {
         return (
