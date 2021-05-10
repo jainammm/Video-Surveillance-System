@@ -30,7 +30,7 @@ function Home() {
             description="Process video with combination of model." />
           <ModelsOverviewCard title="Parametric Scene Detection" image={CustomModelCardImg} link='/try-parametric-model'
             description="Process video for text and object search." />
-          <ModelsOverviewCard title="Face Recognition" image={FaceRecogHeaderImg} link='/try-custom-model'
+          <ModelsOverviewCard title="Face Recognition" image={FaceRecogHeaderImg} link='/try-face-recognition'
             description="Search face in a video" />
         </div>
       </div>

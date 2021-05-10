@@ -1,0 +1,24 @@
+.paper {
+    position: absolute;
+    padding: 50px;
+}
+
+.card{
+    padding: 20px;
+    background-color: rgb(29, 26, 26) !important;
+}
+
+.Heading{
+    color : #007ACE;
+    font-weight: 600 ;
+}
+
+.cancel{
+    background-color: red !important;
+    color: white !important;
+    margin-left: 5px !important;
+}
+
+.h5text{
+    color: white;
+}
