@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Chip from '@material-ui/core/Chip';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import CloseIcon from '@material-ui/icons/Close';
+import CheckIcon from '@material-ui/icons/Check';
 import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
 
@@ -75,6 +77,18 @@ export default function DashboardResult({ task }) {
 
     return (
         <div className={classes.root}>
+            <div>
+                {(task.textParameters && task.model === 'text_recog') && <h5><b>Text Parameters: </b>{task.textParameters?.map((text, text_i) => (
+                    <Chip key={text_i} label={`${text}`} />
+                ))}
+                </h5>}
+            </div>
+            <div>
+                {(task.objectParameters && task.model === 'yolo') && <h5><b>Object Parameters: </b>{task.objectParameters?.map((object, object_i) => (
+                    <Chip key={object_i} label={`${object}`} />
+                ))}
+                </h5>}
+            </div>
             <TableContainer component={Paper} className={classes.table}>
                 <Table aria-label="simple table">
                     {
@@ -96,7 +110,9 @@ export default function DashboardResult({ task }) {
                                             </TableCell>
                                             <TableCell align="right">{row.objects.length}</TableCell>
                                             <TableCell align="right">{row.objects.map((ob, ob_i) =>
-                                                <Chip key={ob_i} label={`${ob.object} ${ob.confidence.toFixed(2)}`} />
+                                                task.objectParameters?.includes(ob.object) ? <Chip style={{ background: 'green', color: 'white' }} key={ob_i}
+                                                    label={`${ob.object} ${ob.confidence.toFixed(2)}`} /> :
+                                                    <Chip key={ob_i} label={`${ob.object} ${ob.confidence.toFixed(2)}`} />
                                             )}</TableCell>
                                             <TableCell className={classes.tableCell} onClick={() => {
                                                 handleOpen(row.image_path)
@@ -126,7 +142,10 @@ export default function DashboardResult({ task }) {
                                             </TableCell>
                                             <TableCell align="right">{row.text.length}</TableCell>
                                             <TableCell align="right">{row.text.map((ob, ob_i) =>
-                                                <Chip key={ob_i} label={`${ob}`} />
+                                                task.textParameters?.find(a => ob.includes(a)) ? <Chip
+                                                    style={{ background: 'green', color: 'white' }}
+                                                    key={ob_i} label={ob} /> : <Chip
+                                                    key={ob_i} label={ob} />
                                             )}</TableCell>
                                             <TableCell className={classes.tableCell} onClick={() => {
                                                 handleOpen(row.image_path)
@@ -160,6 +179,42 @@ export default function DashboardResult({ task }) {
                                                     }} align="right"><VisibilityIcon /></TableCell>
                                                 </TableRow>
                                             ))
+
+                                        ))
+                                    }
+                                </TableBody>
+                            </div>)
+                    }
+
+                    {
+                        task.model === 'face_recog' && (
+                            <div>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell className={classes.head}>Image</TableCell>
+                                        <TableCell align="right" className={classes.head}>View</TableCell>
+                                        <TableCell align="right" className={classes.head}>Face Detected</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {
+                                        Object.keys(task.task?.face_recognition_results).map((k, v) => (
+
+                                            <TableRow key={k}>
+                                                <TableCell component="th" scope="row">
+                                                    {k.split(/(\\|\/)/g).pop()}
+                                                </TableCell>
+                                                <TableCell className={classes.tableCell} onClick={() => {
+                                                    handleOpen(k)
+                                                }} align="right"><VisibilityIcon /></TableCell>
+                                                { v === true ? <TableCell className={classes.tableCell} align="right">
+                                                    <CheckIcon htmlColor='green' />
+                                                </TableCell> :
+                                                    <TableCell className={classes.tableCell} align="right">
+                                                        <CloseIcon htmlColor='red' />
+                                                    </TableCell>
+                                                }
+                                            </TableRow>
 
                                         ))
                                     }

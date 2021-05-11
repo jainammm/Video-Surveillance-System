@@ -78,10 +78,9 @@ function Dashboard() {
   }, [])
 
 
-  const handleOpen = (model, task) => {
-    console.log(task)
+  const handleOpen = (model, task, objectParameters, textParameters) => {
     setmodalBody(
-      <DashboardResult task={{ model: model, task: task }} />
+      <DashboardResult task={{ model: model, task: task, objectParameters: objectParameters, textParameters: textParameters }} />
     )
     setOpen(true);
   };
@@ -93,7 +92,8 @@ function Dashboard() {
   const models = {
     scene_detection: "Scene Detection",
     yolo: "Yolo",
-    text_recog: "Text Recognition"
+    text_recog: "Text Recognition",
+    face_recog: "Face Recognition"
   }
 
   return (
@@ -111,7 +111,9 @@ function Dashboard() {
                 Object.keys(task.models_result).map((k, v) => (
                   <Button variant="contained" size="small" color="primary"
                     className={classes.button}
-                    onClick={() => { handleOpen(k, task.models_result[k]) }}>
+                    onClick={() => {
+                      handleOpen(k, task.models_result[k], task.objectParameters, task.textParameters)
+                    }}>
                     {models[k]}
                   </Button>
                 ))
