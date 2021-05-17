@@ -28,6 +28,7 @@ def insert_start_task_with_parameters(video_path, objectParameters, textParamete
 def insert_start_task_live_stream(face_path, objectParameters, textParameters):
     return task_table.insert({
         'status': 'started',
+        'video_path': 'camera',
         'face_path': face_path,
         'timestamp': str(datetime.now()),
         'models_result': {

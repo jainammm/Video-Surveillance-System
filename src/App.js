@@ -11,6 +11,7 @@ import TryTextDetection from './screens/TryTextDetection'
 import TryCustomModel from './screens/CustomModel'
 import TryParametricModel from './screens/TryParametricModel'
 import TryFaceRecognition from './screens/TryFaceRecognition'
+import TryLiveSceneDetection from './screens/TryLiveDetection'
 import SuccessPage from './screens/SuccessPage'
 import theme from './theme.js';
 
@@ -28,6 +29,7 @@ function App() {
             <Route exact path='/try-custom-model' component={TryCustomModel}></Route>
             <Route exact path='/try-parametric-model' component={TryParametricModel}></Route>
             <Route exact path='/try-face-recognition' component={TryFaceRecognition}></Route>
+            <Route exact path='/try-live-detection' component={TryLiveSceneDetection}></Route>
             <Route exact path='/upload-success' component={SuccessPage}></Route>
             <Route exact path='/dashboard' component={Dashboard}></Route>
           </Switch>

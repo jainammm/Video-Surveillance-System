@@ -56,6 +56,7 @@ function getModalStyle() {
 
 export default function DashboardResult({ task }) {
     const classes = useStyles();
+    console.log(task.task)
 
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
@@ -208,6 +209,42 @@ export default function DashboardResult({ task }) {
                                                     handleOpen(k)
                                                 }} align="right"><VisibilityIcon /></TableCell>
                                                 { v === true ? <TableCell className={classes.tableCell} align="right">
+                                                    <CheckIcon htmlColor='green' />
+                                                </TableCell> :
+                                                    <TableCell className={classes.tableCell} align="right">
+                                                        <CloseIcon htmlColor='red' />
+                                                    </TableCell>
+                                                }
+                                            </TableRow>
+
+                                        ))
+                                    }
+                                </TableBody>
+                            </div>)
+                    }
+
+                    {
+                        task.model === 'live_stream_result' && (
+                            <div>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell className={classes.head}>Image</TableCell>
+                                        <TableCell align="right" className={classes.head}>View</TableCell>
+                                        <TableCell align="right" className={classes.head}>Face Detected</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {
+                                        task.task?.map((k, v) => (
+
+                                            <TableRow key={v}>
+                                                <TableCell component="th" scope="row">
+                                                    {k.image_path.split(/(\\|\/)/g).pop()}
+                                                </TableCell>
+                                                <TableCell className={classes.tableCell} onClick={() => {
+                                                    handleOpen(k.image_path)
+                                                }} align="right"><VisibilityIcon /></TableCell>
+                                                { k.face_detected === true ? <TableCell className={classes.tableCell} align="right">
                                                     <CheckIcon htmlColor='green' />
                                                 </TableCell> :
                                                     <TableCell className={classes.tableCell} align="right">

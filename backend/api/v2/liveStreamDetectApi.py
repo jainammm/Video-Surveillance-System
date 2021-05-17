@@ -22,11 +22,6 @@ async def liveStreamDetect(fileDetails: FileDetails,):
             status_code=403, detail="Please send correct Face file path!"
         )
 
-    if not fileDetails.objectParameters and not fileDetails.textParameters:
-        raise HTTPException(
-            status_code=403, detail="Please send non empty parameters!"
-        )
-
     db_id = insert_start_task_live_stream(
         fileDetails.facePath, fileDetails.objectParameters, fileDetails.textParameters)
 

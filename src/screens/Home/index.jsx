@@ -8,6 +8,7 @@ import SceneDetectCardImg from '../../assets/images/SceneDetectCardImg.gif';
 import TextDetectCardImg from '../../assets/images/text_detection.jpeg';
 import CustomModelCardImg from '../../assets/images/custom_model.png';
 import FaceRecogHeaderImg from '../../assets/images/face_recognition.png';
+import LiveStreamHeaderImg from '../../assets/images/live_stream.png';
 
 function Home() {
 
@@ -32,6 +33,8 @@ function Home() {
             description="Process video for text and object search." />
           <ModelsOverviewCard title="Face Recognition" image={FaceRecogHeaderImg} link='/try-face-recognition'
             description="Search face in a video" />
+          <ModelsOverviewCard title="Live Scene Detection" image={LiveStreamHeaderImg} link='/try-live-detection'
+            description="Detect text, face and objects in Live Stream" />
         </div>
       </div>
     </div>

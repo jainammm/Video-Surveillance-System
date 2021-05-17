@@ -9,6 +9,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import VideocamIcon from '@material-ui/icons/Videocam';
 import Button from '@material-ui/core/Button';
 import Moment from 'react-moment';
 
@@ -93,7 +94,8 @@ function Dashboard() {
     scene_detection: "Scene Detection",
     yolo: "Yolo",
     text_recog: "Text Recognition",
-    face_recog: "Face Recognition"
+    face_recog: "Face Recognition",
+    live_stream_result: "Live Scene Detection"
   }
 
   return (
@@ -126,9 +128,10 @@ function Dashboard() {
             </Typography>
           </ListItem>
           <ListItem>
-            {task.status === 'finished' ?
-              <CheckCircleIcon className={styles.success_icon} /> :
-              <CircularProgress />}
+            {task.video_path === 'camera' ? <VideocamIcon /> :
+              (task.status === 'finished' ?
+                <CheckCircleIcon className={styles.success_icon} /> :
+                <CircularProgress />)}
           </ListItem>
         </List>
       )}
