@@ -13,6 +13,7 @@ class FileDetails(BaseModel):
     facePath: str
     objectParameters: list
     textParameters: list
+    email: str
 
 
 @router.post("/")
@@ -26,6 +27,6 @@ async def liveStreamDetect(fileDetails: FileDetails,):
         fileDetails.facePath, fileDetails.objectParameters, fileDetails.textParameters)
 
     live_stream_task.delay(fileDetails.facePath, db_id,
-                           fileDetails.objectParameters, fileDetails.textParameters)
+                           fileDetails.objectParameters, fileDetails.textParameters, fileDetails.email)
 
     return {"msg": "proccessing"}

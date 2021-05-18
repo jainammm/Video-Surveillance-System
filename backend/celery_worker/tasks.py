@@ -7,9 +7,11 @@ from service.text_recognition.text_recog import east_text_recog_images
 from storage.taskDBHelper import (finish_task, insert_scene_detection_result,
                                   insert_yolo_result, insert_text_recog_result,
                                   insert_face_recog_result, insert_live_stream_result)
+from utils.email_service import send_mail
 
 import os
 from shutil import copyfile
+import datetime
 
 
 @app.task(track_started=True, bind=True)
@@ -67,12 +69,14 @@ def face_recognition(self, video_path, face_path, db_id):
 
 
 @app.task(track_started=True, bind=True)
-def live_stream_task(self, facePath, db_id, objectParameters, textParameters):
+def live_stream_task(self, facePath, db_id, objectParameters, textParameters, email):
     os.makedirs('test_data/{}'.format(self.request.id), exist_ok=True)
 
     def image_callback(image_path):
         face_detected = face_recog(facePath, image_path)
         insert_live_stream_result(db_id, image_path, face_detected)
+        send_mail('Face Detected', 'PFA CCTV Footage at {}'.format(
+            str(datetime.datetime.now())), email, image_path)
 
     liveStreamSceneDetect = LiveStreamSceneDetect(
         self.request.id, image_callback)
