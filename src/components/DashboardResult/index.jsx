@@ -208,7 +208,7 @@ export default function DashboardResult({ task }) {
                                                 <TableCell className={classes.tableCell} onClick={() => {
                                                     handleOpen(k)
                                                 }} align="right"><VisibilityIcon /></TableCell>
-                                                { v === true ? <TableCell className={classes.tableCell} align="right">
+                                                { task.task?.face_recognition_results[k] === true ? <TableCell className={classes.tableCell} align="right">
                                                     <CheckIcon htmlColor='green' />
                                                 </TableCell> :
                                                     <TableCell className={classes.tableCell} align="right">

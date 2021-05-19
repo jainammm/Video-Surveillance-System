@@ -75,8 +75,9 @@ def live_stream_task(self, facePath, db_id, objectParameters, textParameters, em
     def image_callback(image_path):
         face_detected = face_recog(facePath, image_path)
         insert_live_stream_result(db_id, image_path, face_detected)
-        send_mail('Face Detected', 'PFA CCTV Footage at {}'.format(
-            str(datetime.datetime.now())), email, image_path)
+        if face_detected:
+            send_mail('Face Detected', 'PFA CCTV Footage at {}'.format(
+                str(datetime.datetime.now())), email, image_path)
 
     liveStreamSceneDetect = LiveStreamSceneDetect(
         self.request.id, image_callback)
